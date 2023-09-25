@@ -1,0 +1,89 @@
+import profesionales.*
+
+describe "test sobre empresa martinez"{
+	const sanMartin = new Universidad()
+	const rosario = new Universidad()
+	const corrientes = new Universidad()
+	const hurlingham = new Universidad()
+	const juana = new ProfesionalVinculado()
+	const melina = new ProfesionalAsociado()
+	const rocio = new ProfesionalLibre()
+	const luciana = new ProfesionalLibre()
+	
+	const empresaMartinez = new EmpresaServicios()
+
+	method initialize() {
+		sanMartin.provincia("buenosAires")
+		sanMartin.honorariosPorHora(3500)
+		rosario.provincia("santaFe")
+		rosario.honorariosPorHora(2800)
+		corrientes.provincia("corrientes")
+		corrientes.honorariosPorHora(4200)
+		hurlingham.provincia("buenosAires")
+		hurlingham.honorariosPorHora(8800)
+		juana.universidad(rosario)
+		melina.universidad(corrientes)
+		rocio.universidad(hurlingham)
+		rocio.honorariosPorHora(5000)
+		rocio.provinciasDondePuedeTrabajar(#{"santaFe","cordoba","buenosAires"})
+		luciana.universidad(rosario)
+		luciana.honorariosPorHora(3200)
+		luciana.provinciasDondePuedeTrabajar(#{"santaFe","entreRios"})
+		empresaMartinez.honorariosPorHora(3500)
+		empresaMartinez.contratar(juana)
+		empresaMartinez.contratar(melina)
+		empresaMartinez.contratar(rocio)
+		empresaMartinez.contratar(luciana)
+
+	}
+	
+	test "los honorarios de la empresa son de 3500"{
+		assert.equals(3500, empresaMartinez.honorariosPorHora())
+	}
+	
+	test "dos de sus profesionales estudiaron en rosario"{
+		assert.equals(2, empresaMartinez.cantidadProfesionalesQueEstudiaron(rosario))
+	}
+	
+	test "uno de sus profesionales estudio en hurlingham"{
+		assert.equals(1, empresaMartinez.cantidadProfesionalesQueEstudiaron(hurlingham))
+	}
+	
+	test "ninguno de sus profesionales estudio en san martin"{
+		assert.equals(0, empresaMartinez.cantidadProfesionalesQueEstudiaron(sanMartin))
+	}
+	
+	test "como profesional caro esta solamente rocio"{
+		assert.equals(#{rocio}, empresaMartinez.profesionalesCaros())
+	}
+	
+	test "universidades formadoras"{
+		assert.equals(#{rosario, corrientes, hurlingham}, empresaMartinez.universidadesFormadoras())
+	}
+	
+	test "profesional mas barato"{
+		assert.equals(juana, empresaMartinez.profesionalMasBarato())
+	}
+	
+	test "es empresa con gente acotada"{
+		assert.that(empresaMartinez.genteAcotada())
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//sanMartin.provincia("buenosAires")
+//sanMartin.honorariosPorHora(3500)

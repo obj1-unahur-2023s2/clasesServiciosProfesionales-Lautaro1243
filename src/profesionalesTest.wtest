@@ -1,4 +1,6 @@
 import profesionales.*
+import solicitantes.*
+import otros.*
 
 describe "test sobre empresa martinez"{
 	const sanMartin = new Universidad()
@@ -68,7 +70,11 @@ describe "test sobre empresa martinez"{
 	test "es empresa con gente acotada"{
 		assert.that(empresaMartinez.genteAcotada())
 	}
+	
+	//test "puede satisfacer a un club solicitante"	
 }
+
+
 
 
 
